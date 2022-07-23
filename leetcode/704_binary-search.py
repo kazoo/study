@@ -17,7 +17,7 @@ class Solution:
                 head = c + 1
             else:
                 tail = c - 1
-            print(head, tail)
+#            print(head, tail)
         return -1
 
 s = Solution()
