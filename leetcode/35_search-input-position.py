@@ -8,7 +8,6 @@ class Solution:
         head = 0
         tail = l
         while head <= tail:
-            print(head, tail)
             if head == tail:
                 if head == l or nums[head] >= target:
                     return head
