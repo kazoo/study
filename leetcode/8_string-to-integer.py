@@ -7,21 +7,28 @@ class Solution:
         ans = 0
         for _ in s:
             if not started:
-                if _ == ' ' or _ == '+':
+                if _ == ' ':
                     continue
-                if _ == '-':
-                    negative = True
-                elif '0' <= _ and _ <= '9':
+                
+                started = True
+                if '0' <= _ and _ <= '9':
                     ans = int(_)
-                    started = True
+                elif _ == '-':
+                    negative = True
+                elif _ == '+':
+                    ans = 0
                 else:
                     break
             else:
-                if _ == ' ':
+                if '0' <= _ and _ <= '9':
+                    ans = ans * 10 + int(_)
+                else:
                     break
-                ans = ans * 10 + int(_)
         
-        return -ans if negative else ans
+        if ans >= 2 ** 31:
+            return (-2 ** 31) if negative else (2 ** 31 - 1)
+        else:
+            return -ans if negative else ans
             
 s = Solution()
 w = "words and 987"
