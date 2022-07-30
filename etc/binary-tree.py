@@ -84,6 +84,27 @@ class BinaryTree:
 
         return left2right(q)
 
+    def levelOrder(self, root):
+        ans = []
+        q = deque([root])
+        
+        def l2r(q):
+            l = len(q)
+            layer_val = []
+            for _ in range(l):
+                node = q.popleft()
+                layer_val.append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            ans.append(layer_val)
+            if len(q) > 0:
+                l2r(q)
+        l2r(q)
+        return ans
+
+
 bt = BinaryTree()
 l = [4, 2, 3, 1, 6, 5]
 for _ in l:
