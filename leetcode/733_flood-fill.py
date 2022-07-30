@@ -18,6 +18,9 @@ class Solution:
         return image
 
     # BFS
+    # 組み込みのリストlistをキューやスタック、デック（両端キュー）として使うことも可能だが、
+    # リストでは先頭の要素に対する削除や追加（挿入）は処理速度が遅いためdequeのほうが効率的
+    # dequeには両端以外の要素へのアクセスが遅いというデメリットもあるので注意。
     def floodFill2(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
         old, m, n = image[sr][sc], len(image), len(image[0])
         if old != color: 
