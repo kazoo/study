@@ -10,7 +10,6 @@ class Node:
         self.right = right
 
 class BinaryTree:
-
     # 初期値 None
     def __init__(self):
         self.root = None
@@ -34,10 +33,64 @@ class BinaryTree:
         else:
             add_node(self.root, val)
 
+    def DFS(self):
+        print("--- DFS ---")
+        # そのノードに辿り着いたら既読にするやつ
+        def pre_order(node):
+            print(node.val)
+            if node.left:
+                pre_order(node.left)
+            if node.right:
+                pre_order(node.right)
+
+        # 左をチェックしたら既読にするやつ
+        def pre_order(node):
+            if node.left:
+                pre_order(node.left)
+            print(node.val)
+            if node.right:
+                pre_order(node.right)
+
+        # 左右チェック終わったら既読にするやつ
+        def pre_order(node):
+            if node.left:
+                pre_order(node.left)
+            if node.right:
+                pre_order(node.right)
+            print(node.val)
+
+        return pre_order(self.root)
+
+    def BFS(self):
+        print("--- BFS ---")
+        q = [self.root]
+
+        def left2right(q):
+            laylength = len(q)
+            for _ in range(laylength):
+                nums = q.pop(0)
+                print(nums.val)
+                if nums.left:
+                    q.append(nums.left)
+                if nums.right:
+                    q.append(nums.right)
+            
+            # 次のレイヤーがなくてもラスト一周回る
+            # print("laylength:{}, len({})".format(laylength, len(q)))
+            # こっちでも良さそうだが（問題によってはループに影響ある？）
+            # if len(q) > 0:
+            if laylength > 0:
+                left2right(q)
+
+        return left2right(q)
+
 bt = BinaryTree()
 l = [4, 2, 3, 1, 6, 5]
 for _ in l:
     bt.add(_)
+
+bt.DFS()
+bt.BFS()
 
 ###################
 #         4       #
