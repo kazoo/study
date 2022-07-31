@@ -25,7 +25,6 @@ class Solution:
         max_height = 0
         for i in range(l):
             if left < i and height[i] < max_height:
-                print("cont...")
                 continue
             for j in range(l-1, i, -1):
                 print(i, j, height[i], height[j], left, right, max_height, max_area)
