@@ -5,23 +5,21 @@ import copy
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        ans = []
-        l = len(nums)
-
-        def perm(head):
-            if len(head) == 1:
-                return head
-            res = []
-            for i, val in enumerate(head):
-                rest = perm(nums[:i] + nums[i+1:])
+        def perm(mylist):
+            # 最後の1文字ならリストにしてそのまま返す
+            if len(mylist) == 1:
+                return [mylist]
+            result = []
+            for i, val in enumerate(mylist):
+                # 1文字抜いて残りを再起呼び出し
+                rest = perm(mylist[:i] + mylist[i+1:])
                 for _ in rest:
-                    res.append([val] + _)
-            return res
+                    # 抜いた1文字と再合成
+                    result.append([val] + _)
+            return result
+        return perm(nums)
 
-        print(perm(nums))
-        return ans
-
-    def power(self, n) -> int:
+    def power(self, n) -> int:   
         if n <= 1:
             return n
         return n * self.power(n-1)
