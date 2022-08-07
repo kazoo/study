@@ -4,10 +4,34 @@ from collections import deque
 from typing import List
 
 class Solution:
+    # with DP
     def combinationSum4(self, nums: List[int], target: int) -> int:
-        self.ans = 0
-        q = deque()
+        dp = [0 for _ in range(target + 1)]
+        dp[0] = 1
+        print(dp[0], dp[1])
+        for i in range(1, target + 1):
+            for n in nums:
+                if i >= n:
+                    dp[i] += dp[i - n]
+        print(dp)
+        return dp[target]
 
+    #
+    def combinationSum3(self, nums: List[int], target: int) -> int:
+        nums, combs = sorted(nums), [1] + [0] * (target)
+        for i in range(target + 1):
+            for num in nums:
+                if num  > i: break
+                if num == i: combs[i] += 1
+                if num  < i: combs[i] += combs[i - num]
+        return combs[target]
+
+    # TLE
+    def combinationSum(self, nums: List[int], target: int) -> int:
+        self.ans = 0
+        q = deque() # for debug dump
+
+        # リストでなく合計を渡して n == target をチェックするだけでもOK
         def dfs(n, level):
             if level == 1:
                 if sum(n) == target:
@@ -41,4 +65,5 @@ sl = Solution()
 # target = 10
 nums = [1,50]
 target = 200
+print(sl.combinationSum3(nums, target))
 print(sl.combinationSum4(nums, target))
