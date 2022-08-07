@@ -1,4 +1,6 @@
 
+import itertools
+from pprint import pprint
 from typing import List
 
 class Permutation:
@@ -16,13 +18,13 @@ class Permutation:
                 # 1要素抜いて再帰呼び出し
                 rest = permutate(nums[:i] + nums[i+1:])
                 for _ in rest:
-                    # 上で抜いた要素と結合
+                    # 上で抜いた要素から始まる順列を生成する
                     result.append([val] + _)
             return result
         return permutate(nums)
 
     # n個の要素からr個取り出したい場合
-    def getCombinations(self, nums: List, r = None) -> List:
+    def getPermutations(self, nums: List, r = None) -> List:
         if r == None:  # rが設定されていないときはnumsの要素数に初期化
             r = len(nums)
 
@@ -38,9 +40,34 @@ class Permutation:
             return result
         return permutate(nums, r)
 
+    # ライブラリで 1-liner
+    def getPermutations2(self, nums: List, r = None) -> List:
+        return itertools.permutations(nums, r)
+
+    # 重複なしコンビネーション
+    def getCombinations(self, nums: List, r = None) -> List:
+        if r == None:  # rが設定されていないときはnumsの要素数に初期化
+            r = len(nums)
+
+        def combinations(my_list, r):
+            if r == 1:
+                return [[val] for val in my_list]  # my_listを要素数1の組合せの組にする
+            else:
+                result = []
+                for i, val in enumerate(my_list):
+                    rest = combinations(my_list[i+1:], r-1)  # (i+1)番目以降の要素を使えばいい
+                    for rest_perm in rest:
+                        perm = [val] + rest_perm
+                        result.append(perm)
+                return result
+        return combinations(nums, r)
 
 p = Permutation()
 n = [_ for _ in range(4)]
 r  = 3
 print(p.getPermutations(n))
+print(p.getPermutations(n, r))
 print(p.getCombinations(n, r))
+# e = p.getPermutations2(n, r)
+# for _ in e:
+#     print(_)
