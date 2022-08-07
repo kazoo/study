@@ -1,4 +1,5 @@
 
+from collections import deque
 import itertools
 from pprint import pprint
 from typing import List
@@ -62,12 +63,34 @@ class Permutation:
                 return result
         return combinations(nums, r)
 
+    # n種類からr個（n<r）を使った順列（DFS）
+    def getPermutations3(self, nums: List, r: int) -> List:
+        q = deque()
+
+        # 適切に枝刈りしないとすぐTLEするので問題に応じてDPの方が良さそう
+        def dfs(n, level):
+            if level == 1:
+                q.append(n)
+                return n
+
+            for _ in nums:
+#                if sum(n) + _ <= target:  # 枝刈りの例
+                dfs(n + [_], level - 1)
+
+        for i in range(1, r + 1):
+            for _ in nums:
+#                if _ <= target:  # 枝刈り
+                dfs([_], i)
+        return q
+
 p = Permutation()
 n = [_ for _ in range(4)]
 r  = 3
 print(p.getPermutations(n))
 print(p.getPermutations(n, r))
 print(p.getCombinations(n, r))
+print(p.getPermutations3(n, r))
+
 # e = p.getPermutations2(n, r)
 # for _ in e:
 #     print(_)
