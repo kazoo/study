@@ -7,11 +7,11 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-        
+
 class Solution:
 
     # 再帰で後ろからインデックスしてi>nを全部ずらす
-    def removeNthFromEnd3(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         def index(node):
             if not node:
                 return 0
@@ -32,7 +32,8 @@ class Solution:
         return remove(head)[1]
 
     # fast and slow pointer
-    def removeNthFromEnd(self, head, n):
+    # 一旦 n ステップ前に行って、(全体-n）ステップslowを進ませる。エレガント。。。
+    def removeNthFromEnd3(self, head, n):
         fast = slow = head
         for _ in range(n):
             fast = fast.next
@@ -52,7 +53,7 @@ class Solution:
             lp.append(current)
             current = current.next
             cnt += 1
-        
+
         if cnt == 1:
             return ListNode("")
         elif cnt - n < 1:

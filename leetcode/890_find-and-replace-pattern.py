@@ -4,7 +4,7 @@ from typing import List
 
 class Solution:
     def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
-                
+
         def getCode(word: str) -> str:
             chars = [word[0]]
             code = [1]
@@ -16,14 +16,14 @@ class Solution:
                     code.append(len(chars) + 1)
                     chars.append(word[i])
             return code
-        
+
         ans = []
         pc = getCode(pattern)
         for word in words:
             if getCode(word) == pc:
                 ans.append(word)
         return ans
-    
+
 sl = Solution()
 words = ["abc","cba","xyx","yxx","yyx"]
 pattern = "abc"
