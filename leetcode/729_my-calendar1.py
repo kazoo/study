@@ -6,15 +6,12 @@ class MyCalendar:
         self.schedule = []
 
     def book(self, start: int, end: int) -> bool:
-        print("---")
-        print(start, end)
-        print(self.schedule)
         for s in self.schedule:
             if (s[0] <= start < s[1]) or (s[0] < end <= s[1]) or (start < s[0] and s[1] <= end):
                 return False
-        
+
         self.schedule.append([start, end])
-        
+
 
         return True
 
