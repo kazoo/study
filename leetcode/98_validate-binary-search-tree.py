@@ -1,6 +1,7 @@
 # https://leetcode.com/problems/validate-binary-search-tree/
 
 from collections import deque
+from math import inf
 from typing import Optional
 
 # Definition for a binary tree node.
@@ -29,7 +30,7 @@ class Solution:
         # return True
 
         self.ans = True
-        self.current = -2 ** 31
+        self.current = -inf
         def dfs(edge):
             print(edge.val)
             if edge.left != None:
@@ -42,10 +43,8 @@ class Solution:
                 dfs(edge.right)
 
         dfs(root)
-
         return self.ans
 
-        # return dfs(root)
 
 
 def createTree(list):
