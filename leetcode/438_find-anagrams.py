@@ -14,11 +14,13 @@ class Solution:
             return []
 
         # build hashmap
-        for ch in p: hashmap[ch] += 1
+        for _ in p:
+            hashmap[_] += 1
 
         # initial full pass over the window
-        for i in range( len_p-1):
-            if s[i] in hashmap: hashmap[s[i]] -= 1
+        for i in range(len_p - 1):
+            if s[i] in hashmap:
+                hashmap[s[i]] -= 1
 
         # slide the window with stride 1
         for i in range(-1, len_s - len_p + 1):
@@ -28,8 +30,9 @@ class Solution:
                 hashmap[s[i+len_p]] -= 1
 
             # check whether we encountered an anagram
+            # all() はイテラブルを受けて、すべて True なら True
             if all(v == 0 for v in hashmap.values()):
-                ans.append(i+1)
+                ans.append(i + 1)
         return ans
 
     # TLE
