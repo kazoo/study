@@ -7,7 +7,6 @@ class Solution:
         ans = []
 
         def bfs(pairs, stack, rest):
-            print(pairs, stack, rest)
             if rest <= 0:
                 if stack == 0:
                     ans.append(pairs)
