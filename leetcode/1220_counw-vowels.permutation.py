@@ -1,11 +1,21 @@
 # https://leetcode.com/problems/count-vowels-permutation/
 
 class Solution:
+
+
     def countVowelPermutation(self, n: int) -> int:
+        a, e, i, o, u = 1, 1, 1, 1, 1
+        for _ in range(n - 1):
+            a, e, i, o, u = e + i + u, a + i, e + o, i, i + o
+        return (a + e + i + o + u) % (10**9 + 7)
+
+    # TLE
+    def countVowelPermutation2(self, n: int) -> int:
         if n == 1:
             return 5
 
         self.ans = 0
+        self.memo = {1: 5}
         def permutate(vowels, rest):
             if rest == 0:
                 self.ans += 1
@@ -36,5 +46,5 @@ class Solution:
         return self.ans
 
 sl = Solution()
-n = 2
+n = 144
 print(sl.countVowelPermutation(n))
