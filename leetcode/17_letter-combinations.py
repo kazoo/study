@@ -6,7 +6,7 @@ from typing import List
 
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        chars = {
+        mapping = {
             '2': ['a','b','c'],
             '3': ['d','e','f'],
             '4': ['g','h','i'],
@@ -23,13 +23,13 @@ class Solution:
         q = deque([('', l)])
         ans = []
         while q:
-            (c, rest) = q.popleft()
+            (strs, rest) = q.popleft()
             if rest == 0:
-                ans.append(c)
+                ans.append(strs)
                 continue
             d = digits[l-rest]
-            for _ in chars[d]:
-                q.append((c + _, rest - 1))
+            for _ in mapping[d]:
+                q.append((strs + _, rest - 1))
         return ans
 
 
