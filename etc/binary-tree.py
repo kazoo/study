@@ -26,7 +26,7 @@ class BinaryTree:
                     root.right = Node(val)
                 else:
                     add_node(root.right, val)
-        
+
         # root が空なら最初のNodeを構築
         if not self.root:
             self.root = Node(val)
@@ -74,7 +74,7 @@ class BinaryTree:
                     q.append(nums.left)
                 if nums.right:
                     q.append(nums.right)
-            
+
             # 次のレイヤーがなくてもラスト一周回る
             # print("laylength:{}, len({})".format(laylength, len(q)))
             # こっちでも良さそうだが（問題によってはループに影響ある？）
@@ -87,7 +87,7 @@ class BinaryTree:
     def levelOrder(self, root):
         ans = []
         q = deque([root])
-        
+
         def l2r(q):
             l = len(q)
             layer_val = []
@@ -117,6 +117,6 @@ bt.BFS()
 #         4       #
 #      /     \    #
 #     2       6   #
-#    / \     /    # 
-#   1   3   5     # 
+#    / \     /    #
+#   1   3   5     #
 ###################

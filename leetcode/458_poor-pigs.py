@@ -17,7 +17,7 @@ class Solution:
                 if capability >= buckets:
                     return pigs
         return -1
-            
+
 
     def poorPigs2(self, buckets, minutesToDie, minutesToTest):
         pigs = 0

@@ -19,7 +19,7 @@ class Solution:
             return result
         return perm(nums)
 
-    def power(self, n) -> int:   
+    def power(self, n) -> int:
         if n <= 1:
             return n
         return n * self.power(n-1)
