@@ -8,7 +8,7 @@ class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         q = deque()
 
-        def combinations(nlist, r):
+        def combinations(nlist, rlist, r):
             if r == 1:
                 return [[val] for val in nlist]  # my_listを要素数1の組合せの組にする
 
@@ -18,9 +18,9 @@ class Solution:
                     perm = [val] + rest_perm
 #                    if sum(nlist) == target and nlist not in q:
                     q.append(perm)
-    #    for _ in nums:
-    #         dfs([_], 4)
-    #     return q
+        # for _ in nums:
+        #      dfs([_], 4)
+        #  return q
 
     #     def combinations(my_list, r):
     #         if r == 1:
@@ -33,7 +33,7 @@ class Solution:
     #                     perm = [val] + rest_perm
     #                     result.append(perm)
     #             return result
-        return combinations(nums, len(nums))
+        return combinations(nums, 4)
 
 
 sl = Solution()
