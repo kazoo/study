@@ -1,3 +1,4 @@
+# https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_e
 n,m = map(int, input().split())
 
 if 3 * n < m:
